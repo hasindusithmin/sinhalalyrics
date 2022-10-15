@@ -4,28 +4,38 @@ import Songs from "./components/Songs";
 import { useState } from 'react';
 
 function App() {
+  const [showHome,setshowHome] = useState(true);
+  const [singers,setSingers] = useState({});
+  const [songs,setSongs] = useState({});
+  const [songslist,setSongList] = useState([]);
+  const [lyricspath,setLyricsPath] = useState('');
 
-  const [singers,setSingers] = useState({})
-  const [songs,setSongs] = useState({})
-
-  const SingersBtn = ()=>{
+  const SingersBtn = async()=>{
     const singer = document.getElementById('singers').value;
-    console.log(singers[singer]);
+    const key = singers[singer];
+    const res = await fetch(`https://sinhalalyrics.deta.dev/songsbysinger?key=${key}`);
+    const data = await res.json();
+    setshowHome(false);
+    setSongList(data);
+
   }
   const SongsBtn = ()=>{
     const song = document.getElementById('songs').value;
-    console.log(songs[song]);
+    setshowHome(false);
+    setLyricsPath(songs[song])
   }
 
   const hide_songs_show_lyrics = (key)=>{
-    console.log(key)
+    setSongList([])
+    setLyricsPath(key)
   }
 
   return (
     <>
-      {<Songs handler={hide_songs_show_lyrics} />}
-      {/* <Lyrics path={'2021/12/dinayaka-oba-ma-hiri-poda-wesse'}/> */}
-      {/* <Home setSingers={setSingers} setSongs={setSongs} SingersBtn={SingersBtn} SongsBtn={SongsBtn}/> */}
+      {showHome && <Home setSingers={setSingers} setSongs={setSongs} SingersBtn={SingersBtn} SongsBtn={SongsBtn}/>}
+      {songslist && <Songs songlist={songslist} handler={hide_songs_show_lyrics} />}
+      {lyricspath && <Lyrics path={lyricspath}/>}
+      
     </>
   )
 
