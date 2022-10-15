@@ -1,66 +1,60 @@
 import './App.css';
 import { useEffect, useState } from 'react';
 import autoComplete from "@tarekraafat/autocomplete.js";
+import Singers from "./singers.json"
+import Songs from "./songs.json"
 function App() {
   const [singers,setSingers] = useState({})
   const [songs,setSongs] = useState({})
   useEffect(()=>{
-    fetch('https://sinhalalyrics.deta.dev/singers')
-      .then(res=>res.json())
-      .then(data=>{
-        const _singers = {}
-        for (const {name,key} of data) {
-          _singers[name] = key;
-        }
-        const autoCompleteJS = new autoComplete({
-          selector: "#singers",
-          placeHolder: "Search for singers ...",
-          data: {
-              src: Object.keys(_singers),
-              cache: true,
-          },
-          resultItem: {
-              highlight: true
-          },
-          events: {
-              input: {
-                  selection: (event) => {
-                      const selection = event.detail.selection.value;
-                      autoCompleteJS.input.value = selection;
-                  }
+    const _singers = {}
+    for (const {name,key} of Singers) {
+      _singers[name] = key;
+    }
+    setSingers(_singers)
+    const autoCompleteJS1 = new autoComplete({
+      selector: "#singers",
+      placeHolder: "Search for singers ...",
+      data: {
+          src: Object.keys(_singers),
+          cache: true,
+      },
+      resultItem: {
+          highlight: true
+      },
+      events: {
+          input: {
+              selection: (event) => {
+                  const selection = event.detail.selection.value;
+                  autoCompleteJS1.input.value = selection;
               }
           }
-      });
-      setSingers(_singers)
-      })
-      fetch('https://sinhalalyrics.deta.dev/songs')
-      .then(res=>res.json())
-      .then(data=>{
-        const _songs = {}
-        for (const {name,key} of data) {
-          _songs[name] = key;
-        }
-        const autoCompleteJS = new autoComplete({
-          selector: "#songs",
-          placeHolder: "Search for songs ...",
-          data: {
-              src: Object.keys(_songs),
-              cache: true,
-          },
-          resultItem: {
-              highlight: true
-          },
-          events: {
-              input: {
-                  selection: (event) => {
-                      const selection = event.detail.selection.value;
-                      autoCompleteJS.input.value = selection;
-                  }
+      }
+    })
+    const _songs = {}
+    for (const {name,key} of Songs) {
+      _songs[name] = key;
+    }
+    setSongs(_songs)
+    const autoCompleteJS2 = new autoComplete({
+      selector: "#songs",
+      placeHolder: "Search for songs ...",
+      data: {
+          src: Object.keys(_songs),
+          cache: true,
+      },
+      resultItem: {
+          highlight: true
+      },
+      events: {
+          input: {
+              selection: (event) => {
+                  const selection = event.detail.selection.value;
+                  autoCompleteJS2.input.value = selection;
               }
           }
-      });
-      setSongs(_songs)
-      })
+      }
+    })
 
   },[])
   return (
