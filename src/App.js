@@ -1,5 +1,6 @@
 import Home from "./components/Home";
 import Lyrics from "./components/Lyrics";
+import Songs from "./components/Songs";
 import { useState } from 'react';
 
 function App() {
@@ -16,8 +17,13 @@ function App() {
     console.log(songs[song]);
   }
 
+  const hide_songs_show_lyrics = (key)=>{
+    console.log(key)
+  }
+
   return (
     <>
+      {<Songs handler={hide_songs_show_lyrics} />}
       {/* <Lyrics path={'2021/12/dinayaka-oba-ma-hiri-poda-wesse'}/> */}
       {/* <Home setSingers={setSingers} setSongs={setSongs} SingersBtn={SingersBtn} SongsBtn={SongsBtn}/> */}
     </>
