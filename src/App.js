@@ -17,8 +17,10 @@ function App() {
   }
 
   return (
-    <Lyrics path={'2021/12/dinayaka-oba-ma-hiri-poda-wesse'}/>
-    // <Home setSingers={setSingers} setSongs={setSongs} SingersBtn={SingersBtn} SongsBtn={SongsBtn}/>
+    <>
+      {/* <Lyrics path={'2021/12/dinayaka-oba-ma-hiri-poda-wesse'}/> */}
+      {/* <Home setSingers={setSingers} setSongs={setSongs} SingersBtn={SingersBtn} SongsBtn={SongsBtn}/> */}
+    </>
   )
 
 }
