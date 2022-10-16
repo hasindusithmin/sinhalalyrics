@@ -1,40 +1,37 @@
 import Home from "./components/Home";
 import Lyrics from "./components/Lyrics";
 import Songs from "./components/Songs";
+import singers from "./singers.json";
+import songs from "./songs.json";
+import songsbysingers from "./songsbysingers.json";
 import { useState } from 'react';
 
 function App() {
   const [showHome,setshowHome] = useState(true);
-  const [singers,setSingers] = useState({});
-  const [songs,setSongs] = useState({});
-  const [songslist,setSongList] = useState([]);
-  const [lyricspath,setLyricsPath] = useState('');
+  const [songsObj,setSongObj] = useState({});
+  const [showLyrics,setShowLyrics] = useState('');
 
-  const SingersBtn = async()=>{
+  const singersHandler = async()=>{
     const singer = document.getElementById('singers').value;
-    const key = singers[singer];
-    const res = await fetch(`https://sinhalalyrics.deta.dev/songsbysinger?key=${key}`);
-    const data = await res.json();
-    setshowHome(false);
-    setSongList(data);
-
+    const songs = songsbysingers[singers[singer]]
   }
-  const SongsBtn = ()=>{
+  const songsHandler = ()=>{
     const song = document.getElementById('songs').value;
-    setshowHome(false);
-    setLyricsPath(songs[song])
+    const path = songs[song];
+    setshowHome(false)
+    setShowLyrics(path)
   }
 
   const hide_songs_show_lyrics = (key)=>{
-    setSongList([])
-    setLyricsPath(key)
+    setSongObj({})
+    setShowLyrics(key)
   }
 
   return (
     <>
-      {showHome && <Home setSingers={setSingers} setSongs={setSongs} SingersBtn={SingersBtn} SongsBtn={SongsBtn}/>}
-      {songslist && <Songs songlist={songslist} handler={hide_songs_show_lyrics} />}
-      {lyricspath && <Lyrics path={lyricspath}/>}
+      {showHome && <Home songs={songs} singers={singers} singersHandler={singersHandler} songsHandler={songsHandler}/>}
+      {songsObj && <Songs songsObj={songsObj} handler={hide_songs_show_lyrics} />}
+      {showLyrics && <Lyrics path={showLyrics}/>}
       
     </>
   )
