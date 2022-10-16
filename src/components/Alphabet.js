@@ -6,7 +6,7 @@ import singers from "../singers.json"
 import Home from "./Home";
 
 let i = 0;
-export default function Alphabet({singersHandler,songsHandler}) {
+export default function Alphabet({singersHandler,songsHandler,alphaHandler}) {
     const [shHome,setShHome] = useState(false)
     const [showSingerList,setShowSingerList] = useState(true)
     const [songsObj,setSongObj] = useState(false);
@@ -73,7 +73,7 @@ export default function Alphabet({singersHandler,songsHandler}) {
 
     return (
         <>
-            {shHome && <Home songs={songs} singers={singers} singersHandler={singersHandler} songsHandler={songsHandler}/>}
+            {shHome && <Home songs={songs} singers={singers} singersHandler={singersHandler} songsHandler={songsHandler} alphaHandler={alphaHandler}/>}
             {
                 showSingerList 
                 &&

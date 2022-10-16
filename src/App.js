@@ -12,6 +12,7 @@ import Alphabet from "./components/Alphabet";
 function App() {
   const [showHome,setshowHome] = useState(true);
   const [showSearch,setShowSearch] = useState(false);
+  const [showAlpha,setShowAlpha] = useState(false);
   const [songsObj,setSongObj] = useState({});
   const [showLyrics,setShowLyrics] = useState('');
   const [showLyricsType2,setShowLyricsType2] = useState('');
@@ -54,14 +55,19 @@ function App() {
     setSongObj(songs)
   }
 
+  const alphaHandler = () => {
+    setshowHome(false)
+    setShowAlpha(true)
+  }
+
   return (
     <>
-      <Alphabet singersHandler={singersHandler} songsHandler={songsHandler}/>
-      {/* {showHome && <Home songs={songs} singers={singers} singersHandler={singersHandler} songsHandler={songsHandler}/>}
+      {showAlpha && <Alphabet singersHandler={singersHandler} songsHandler={songsHandler}/>}
+      {showHome && <Home songs={songs} singers={singers} singersHandler={singersHandler} songsHandler={songsHandler} alphaHandler={alphaHandler}/>}
       {songsObj && <Songs songsObj={songsObj} handler={hide_songs_show_lyrics} />}
       {showLyrics && <Lyrics path={showLyrics}  homebtn={lyrics_handler_show_home} searchbtn={lyrics_handler_show_search} />}
       {showLyricsType2 && <LyricsType2 path={showLyricsType2} homebtn={lyrics_handler_show_home} previousBtn={previousButtonHander}/>}
-      {showSearch && <Search  handler={songsHandler}/>} */}
+      {showSearch && <Search  handler={songsHandler}/>}
     </>
   )
 
