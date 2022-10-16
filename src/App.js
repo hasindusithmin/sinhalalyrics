@@ -8,7 +8,7 @@ import songs from "./songs.json";
 import songsbysingers from "./songsbysingers.json";
 import { useState } from 'react';
 import LyricsType2 from "./components/LyricsType2";
-
+import Alphabet from "./components/Alphaber";
 function App() {
   const [showHome,setshowHome] = useState(true);
   const [showSearch,setShowSearch] = useState(false);
@@ -55,11 +55,12 @@ function App() {
 
   return (
     <>
-      {showHome && <Home songs={songs} singers={singers} singersHandler={singersHandler} songsHandler={songsHandler}/>}
+      <Alphabet />
+      {/* {showHome && <Home songs={songs} singers={singers} singersHandler={singersHandler} songsHandler={songsHandler}/>}
       {songsObj && <Songs songsObj={songsObj} handler={hide_songs_show_lyrics} />}
       {showLyrics && <Lyrics path={showLyrics}  homebtn={lyrics_handler_show_home} searchbtn={lyrics_handler_show_search} />}
       {showLyricsType2 && <LyricsType2 path={showLyricsType2} homebtn={lyrics_handler_show_home} previousBtn={previousButtonHander}/>}
-      {showSearch && <Search  handler={songsHandler}/>}
+      {showSearch && <Search  handler={songsHandler}/>} */}
     </>
   )
 
