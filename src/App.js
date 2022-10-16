@@ -22,6 +22,7 @@ function App() {
     const songs = songsbysingers[singers[singer]];
     sessionStorage.setItem('songs',JSON.stringify(songs))
     setshowHome(false)
+    // setShowAlpha(false)
     setSongObj(songs)
   }
   
@@ -29,6 +30,7 @@ function App() {
     const song = document.getElementById('songs').value;
     const path = songs[song];
     setshowHome(false)
+    setShowAlpha(false)
     setShowSearch(false)
     setShowLyrics(path)
   }
@@ -62,7 +64,7 @@ function App() {
 
   return (
     <>
-      {showAlpha && <Alphabet singersHandler={singersHandler} songsHandler={songsHandler}/>}
+      {showAlpha && <Alphabet/>}
       {showHome && <Home songs={songs} singers={singers} singersHandler={singersHandler} songsHandler={songsHandler} alphaHandler={alphaHandler}/>}
       {songsObj && <Songs songsObj={songsObj} handler={hide_songs_show_lyrics} />}
       {showLyrics && <Lyrics path={showLyrics}  homebtn={lyrics_handler_show_home} searchbtn={lyrics_handler_show_search} />}

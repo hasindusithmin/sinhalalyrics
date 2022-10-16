@@ -2,12 +2,9 @@ import { useEffect, useState } from "react";
 import alphabet from "../alphabet.json"
 import songsbysingers from "../songsbysingers.json"
 import songs from "../songs.json"
-import singers from "../singers.json"
-import Home from "./Home";
 
 let i = 0;
-export default function Alphabet({singersHandler,songsHandler,alphaHandler}) {
-    const [shHome,setShHome] = useState(false)
+export default function Alphabet() {
     const [showSingerList,setShowSingerList] = useState(true)
     const [songsObj,setSongObj] = useState(false);
     const [path,setPath] = useState(false)
@@ -61,8 +58,7 @@ export default function Alphabet({singersHandler,songsHandler,alphaHandler}) {
     }
 
     const goToHome = ()=>{
-        setShowSingerList(false)
-        setShHome(true)
+        window.location.reload()
     }
 
     const shSongs = ()=>{
@@ -73,7 +69,6 @@ export default function Alphabet({singersHandler,songsHandler,alphaHandler}) {
 
     return (
         <>
-            {shHome && <Home songs={songs} singers={singers} singersHandler={singersHandler} songsHandler={songsHandler} alphaHandler={alphaHandler}/>}
             {
                 showSingerList 
                 &&
