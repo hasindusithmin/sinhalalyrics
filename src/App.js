@@ -2,7 +2,7 @@ import Home from "./components/Home";
 import Lyrics from "./components/Lyrics";
 import Songs from "./components/Songs";
 import Search from "./components/Search";
-
+import SearchSingers from "./components/SearchSingers";
 import singers from "./singers.json";
 import songs from "./songs.json";
 import songsbysingers from "./songsbysingers.json";
@@ -12,6 +12,7 @@ import Alphabet from "./components/Alphabet";
 function App() {
   const [showHome,setshowHome] = useState(true);
   const [showSearch,setShowSearch] = useState(false);
+  const [showSingersSearch,setShowSingersSearch] = useState(false);
   const [showAlpha,setShowAlpha] = useState(false);
   const [songsObj,setSongObj] = useState({});
   const [showLyrics,setShowLyrics] = useState('');
@@ -19,24 +20,28 @@ function App() {
 
   const singersHandler = async()=>{
     const singer = document.getElementById('singers').value;
-    const songs = songsbysingers[singers[singer]];
-    sessionStorage.setItem('songs',JSON.stringify(songs))
-    setshowHome(false)
-    // setShowAlpha(false)
-    setSongObj(songs)
+    if (singer !== '') {
+      const songs = songsbysingers[singers[singer]];
+      sessionStorage.setItem('songs',JSON.stringify(songs))
+      setshowHome(false)
+      setShowSingersSearch(false)
+      setSongObj(songs)
+    }
   }
   
   const songsHandler = ()=>{
     const song = document.getElementById('songs').value;
-    const path = songs[song];
-    setshowHome(false)
-    setShowAlpha(false)
-    setShowSearch(false)
-    setShowLyrics(path)
+    if (song !== '') {
+      const path = songs[song];
+      setshowHome(false)
+      setShowAlpha(false)
+      setShowSearch(false)
+      setShowLyrics(path)
+    }
   }
 
   const hide_songs_show_lyrics = (key)=>{
-    setSongObj({})
+    setSongObj(false)
     setShowLyricsType2(key)
   }
 
@@ -62,14 +67,25 @@ function App() {
     setShowAlpha(true)
   }
 
+  const songsHome =  () => {
+      setSongObj(false)
+      setshowHome(true)
+  }
+
+  const songSearch = () => {
+      setSongObj(false)
+      setShowSingersSearch(true)
+  }
+
   return (
     <>
       {showAlpha && <Alphabet/>}
       {showHome && <Home songs={songs} singers={singers} singersHandler={singersHandler} songsHandler={songsHandler} alphaHandler={alphaHandler}/>}
-      {songsObj && <Songs songsObj={songsObj} handler={hide_songs_show_lyrics} />}
+      {songsObj && <Songs songsObj={songsObj} handler={hide_songs_show_lyrics} songsHome={songsHome} songSearch={songSearch}/>}
       {showLyrics && <Lyrics path={showLyrics}  homebtn={lyrics_handler_show_home} searchbtn={lyrics_handler_show_search} />}
       {showLyricsType2 && <LyricsType2 path={showLyricsType2} homebtn={lyrics_handler_show_home} previousBtn={previousButtonHander}/>}
       {showSearch && <Search  handler={songsHandler}/>}
+      {showSingersSearch && <SearchSingers  handler={singersHandler}/>}
     </>
   )
 
