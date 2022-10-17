@@ -14,7 +14,7 @@ function App() {
   const [showSearch,setShowSearch] = useState(false);
   const [showSingersSearch,setShowSingersSearch] = useState(false);
   const [showAlpha,setShowAlpha] = useState(false);
-  const [songsObj,setSongObj] = useState({});
+  const [songsObj,setSongObj] = useState(false);
   const [showLyrics,setShowLyrics] = useState('');
   const [showLyricsType2,setShowLyricsType2] = useState('');
 
