@@ -1,4 +1,8 @@
 # singwithme
 simple lyrics app
 
-[web](https://hasindusithmin.github.io/sinhalalyrics)
+[github](https://hasindusithmin.github.io/sinhalalyrics) 
+
+or
+
+[vercel](https://sinhalalyrics.vercel.app) 
