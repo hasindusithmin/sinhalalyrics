@@ -4,7 +4,7 @@ import songsbysingers from "../songsbysingers.json"
 import songs from "../songs.json"
 
 let i = 0;
-export default function Alphabet() {
+export default function Alphabet({setSinger}) {
     const [showSingerList,setShowSingerList] = useState(true)
     const [songsObj,setSongObj] = useState(false);
     const [path,setPath] = useState(false)
@@ -14,13 +14,14 @@ export default function Alphabet() {
         if (inner != null) document.getElementById('singers').innerHTML = ''
         const singers =  alphabet[alpha[i]];
         const ul = document.createElement('ul');
-        ul.className = 'w3-ul w3-hoverable w3-monospace w3-padding'
+        ul.className = 'w3-ul w3-hoverable w3-monospace w3-card-4 w3-round-xlarge'
         singers.forEach(singer => {
             const li = document.createElement('li');
             const id = Object.values(singer)
             li.id = id
             li.innerText = Object.keys(singer)
-            li.onclick = ()=>{
+            li.onclick = (e)=>{
+                setSinger(e.target.innerText)
                 const songs = songsbysingers[id[0]]
                 sessionStorage.setItem('songs',JSON.stringify(songs))
                 setShowSingerList(false)
@@ -42,7 +43,9 @@ export default function Alphabet() {
         sessionStorage.setItem('i',i)
         render(i);
     }
+
     const showPrev = ()=>{
+        setSinger(null)
         setSongObj(false)
         setShowSingerList(true)
         setTimeout(()=>{
@@ -58,6 +61,7 @@ export default function Alphabet() {
     }
 
     const goToHome = ()=>{
+        setSinger(null)
         window.location.reload()
     }
 
@@ -80,7 +84,8 @@ export default function Alphabet() {
                         <button className="w3-bar-item w3-button w3-left w3-light-grey" onClick={minus}>« Prev</button>
                         <button className="w3-bar-item w3-button w3-right w3-light-grey" onClick={plus}>Next »</button>
                     </div>
-                    <div className="w3-container w3-center w3-white" id="singers"></div>
+                    <br/>
+                    <div className="w3-center w3-white" id="singers"></div>
                 </div>
             }
             {  
@@ -90,7 +95,8 @@ export default function Alphabet() {
                     <div className="w3-bar">
                         <button className="w3-bar-item w3-button w3-left w3-light-grey" onClick={showPrev} >« Singers</button>
                     </div>
-                    <ul className="w3-ul w3-hoverable w3-monospace w3-center w3-padding">
+                    <br/>
+                    <ul className="w3-ul w3-hoverable w3-monospace w3-center w3-card-4 w3-round-xlarge">
                         {Object.entries(songsObj).map(arr => <li onClick={showLyrics} key={arr[1]}>{arr[0]}</li>)}
                     </ul>
                 </div>
