@@ -1,6 +1,6 @@
 {
-    "theme_color": "#C0C0C0",
-    "background_color": "#C0C0C0",
+    "theme_color": "#FFFFFF",
+    "background_color": "#FFFFFF",
     "display": "standalone",
     "start_url": ".",
     "name": "Sinhala Lyrics",
