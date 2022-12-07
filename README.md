@@ -1,4 +1,6 @@
 # singwithme
-simple lyrics app
+sinhala songs lyrics app
 
-[vercel](https://sinhalalyrics.vercel.app) 
+Download Sinhala song lyrics. Sinhalasonglyrics provide gallery of sinhala songs lyrics. Download Popular Lyrics of Sinhala Songs from Sri Lanka.
+
+[web view](https://sinhalalyrics.vercel.app) 
