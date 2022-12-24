@@ -14,7 +14,7 @@ export default function Alphabet({setSinger}) {
         if (inner != null) document.getElementById('singers').innerHTML = ''
         const singers =  alphabet[alpha[i]];
         const ul = document.createElement('ul');
-        ul.className = 'w3-ul w3-hoverable w3-monospace w3-card-4 w3-round-xlarge'
+        ul.className = 'w3-ul w3-margin-bottom w3-hoverable w3-monospace w3-card-4 w3-round-xlarge'
         singers.forEach(singer => {
             const li = document.createElement('li');
             const id = Object.values(singer)
@@ -76,7 +76,7 @@ export default function Alphabet({setSinger}) {
             {
                 showSingerList 
                 &&
-                <div className="w3-container">
+                <div className="w3-container w3-content">
                     <div className="w3-center">
                         <button className="w3-bar-item w3-button w3-green" onClick={goToHome}>« Home »</button>
                     </div>
@@ -96,7 +96,7 @@ export default function Alphabet({setSinger}) {
                         <button className="w3-bar-item w3-button w3-left w3-light-grey" onClick={showPrev} >« Singers</button>
                     </div>
                     <br/>
-                    <ul className="w3-ul w3-hoverable w3-monospace w3-center w3-card-4 w3-round-xlarge">
+                    <ul className="w3-ul w3-margin-bottom w3-hoverable w3-monospace w3-center w3-card-4 w3-round-xlarge">
                         {Object.entries(songsObj).map(arr => <li onClick={showLyrics} key={arr[1]}>{arr[0]}</li>)}
                     </ul>
                 </div>
@@ -108,7 +108,7 @@ export default function Alphabet({setSinger}) {
                     <div className="w3-bar">
                         <button className="w3-bar-item w3-button w3-left w3-light-grey" onClick={shSongs}>« Songs</button>
                     </div>
-                    <div className="w3-center w3-padding-top">
+                    <div className="w3-center w3-section">
                         <img  src={`https://asoptbhxcojoswrahsdk.supabase.co/storage/v1/object/public/lyrics/${path}`} alt="lyrics" className="w3-image"/>
                     </div>
                 </div>
